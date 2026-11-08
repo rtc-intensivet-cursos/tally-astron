@@ -15,6 +15,7 @@ Uso:
   python tally_astron.py              # roda de verdade
   python tally_astron.py --simular    # só mostra o que faria
   python tally_astron.py --so-email x@y.com   # trata só essa inscrição (teste)
+  python tally_astron.py --config teste.json  # usa outra lista de formulários
 """
 import base64
 import json
@@ -118,7 +119,10 @@ def main():
     if "--so-email" in sys.argv:
         so_email = sys.argv[sys.argv.index("--so-email") + 1].strip().lower()
 
-    config = json.load(open(ARQ_CONFIG, encoding="utf-8"))
+    arq_config = ARQ_CONFIG
+    if "--config" in sys.argv:
+        arq_config = os.path.join(PASTA, sys.argv[sys.argv.index("--config") + 1])
+    config = json.load(open(arq_config, encoding="utf-8"))
     feitos = json.load(open(ARQ_FEITOS, encoding="utf-8")) if os.path.exists(ARQ_FEITOS) else {}
     chave_tally = env("TALLY_API_KEY")
     cab = "Basic " + base64.b64encode(
