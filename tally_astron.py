@@ -40,8 +40,10 @@ def env(nome):
     v = os.environ.get(nome, "").strip()
     if not v:
         # uso local: lê do arquivo .env ao lado do script
-        caminho = os.path.join(PASTA, ".env")
-        if os.path.exists(caminho):
+        # (a chave da Astron já existe no PC, em C:\astron-mcp\astron.env)
+        for caminho in (os.path.join(PASTA, ".env"), r"C:\astron-mcp\astron.env"):
+            if v or not os.path.exists(caminho):
+                continue
             for linha in open(caminho, encoding="utf-8-sig"):
                 if linha.strip().startswith(nome + "="):
                     v = linha.split("=", 1)[1].strip().strip('"').strip("'")
