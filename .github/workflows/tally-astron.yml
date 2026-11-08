@@ -1,0 +1,38 @@
+name: Tally para Astron (MOVE 2026)
+
+on:
+  # Agendamento DESLIGADO até o teste ser aprovado pelo Tiago.
+  # Para ligar, tirar o "#" das duas linhas abaixo.
+  # schedule:
+  #   - cron: "*/30 * * * *"   # a cada 30 minutos
+  workflow_dispatch:          # botão "Run workflow" para rodar na hora
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tally-astron
+  cancel-in-progress: false
+
+jobs:
+  rodar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cadastrar novos inscritos na Astron
+        env:
+          TALLY_API_KEY: ${{ secrets.TALLY_API_KEY }}
+          ASTRON_AM_KEY: ${{ secrets.ASTRON_AM_KEY }}
+          ASTRON_AM_SECRET: ${{ secrets.ASTRON_AM_SECRET }}
+        run: python tally_astron.py
+      - name: Guardar a lista de inscrições já tratadas
+        if: always()
+        run: |
+          git config user.name "tally-astron"
+          git config user.email "actions@users.noreply.github.com"
+          git add processados.json || true
+          git diff --cached --quiet || (git commit -m "Atualiza inscrições tratadas" && git push)
