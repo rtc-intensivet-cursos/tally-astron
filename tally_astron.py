@@ -108,6 +108,13 @@ def astron(metodo, params, cab):
     return r.get("return")
 
 
+def sem_dados(texto):
+    """Tira e-mails e números longos (CPF/telefone) de qualquer mensagem:
+    o histórico do GitHub é público."""
+    texto = re.sub(r"[\w.+-]+@[\w-]+\.[\w.-]+", "<e-mail>", str(texto))
+    return re.sub(r"\d{8,}", "<número>", texto)
+
+
 def senha_aleatoria():
     letras = string.ascii_letters + string.digits
     return "".join(secrets.choice(letras) for _ in range(10))
@@ -144,7 +151,7 @@ def main():
                 print(f"[pulei] {form['nome']}: inscrição {s['id']} sem e-mail/nome válido")
                 continue
             if simular:
-                print(f"[simulação] {form['nome']}: {nome} <{email}> -> plano {plano}")
+                print(f"[simulação] {form['nome']}: inscrição {s['id']} -> plano {plano}")
                 continue
             try:
                 p = {"club_id": club, "name": nome, "email": email,
@@ -165,7 +172,7 @@ def main():
                 print(f"[ok] {form['nome']}: inscrição {s['id']} liberada")
             except Exception as e:
                 erros += 1
-                print(f"[erro] {form['nome']}: inscrição {s['id']}: {e}")
+                print(f"[erro] {form['nome']}: inscrição {s['id']}: {sem_dados(e)}")
             time.sleep(1)
 
     if not simular:
