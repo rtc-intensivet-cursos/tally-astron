@@ -108,6 +108,20 @@ def astron(metodo, params, cab):
     return r.get("return")
 
 
+def ja_tem_plano(club, email, plano, cab):
+    """A Astron responde "Failed to Add User Plan" (423) quando a pessoa JÁ tem o plano.
+    Confere na própria Astron se o plano está ativo na conta (12/11/2026)."""
+    req = urllib.request.Request(
+        ASTRON + "listClubUserPlans?" + urllib.parse.urlencode({"club_id": club, "user_id": email}),
+        method="GET", headers={"Authorization": cab, "User-Agent": "tally-astron/1.0"})
+    try:
+        r = pedir(req)
+    except Exception:
+        return False
+    planos = r.get("return") if isinstance(r, dict) else r
+    return any(str(x.get("id")) == str(plano) for x in (planos or []) if isinstance(x, dict))
+
+
 def sem_dados(texto):
     """Tira e-mails e números longos (CPF/telefone) de qualquer mensagem:
     o histórico do GitHub é público."""
@@ -163,9 +177,11 @@ def main():
                     astron("addClubUserPlan", {"club_id": club, "user_id": email,
                                                "plan_id": plano, "update_if_exists": 0}, cab)
                 except RuntimeError as e:
-                    # quem já tem o plano não é erro
-                    if "exist" not in str(e).lower() and "já" not in str(e).lower():
+                    # quem já tem o plano não é erro (ex.: inscreveu-se de novo por outro patrocinador)
+                    msg = str(e).lower()
+                    if "exist" not in msg and "já" not in msg and not ja_tem_plano(club, email, plano, cab):
                         raise
+                    print(f"[já tinha] {form['nome']}: inscrição {s['id']} já tinha o plano")
                 feitos[s["id"]] = {"form": form["nome"], "status": "ok",
                                    "em": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")}
                 novos += 1
