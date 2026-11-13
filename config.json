@@ -34,8 +34,14 @@
    "ate": "2026-11-28"
   },
   {
-   "nome": "Aula Aberta Intensiflix",
+   "nome": "Aula Aberta Intensiflix (vitrine)",
    "id": "Z9Egg0",
+   "plan_id": 94415,
+   "campo_ofertas": "novidades da intensivet (opcional)"
+  },
+  {
+   "nome": "Aula Aberta Intensiflix (página do Intensiflix)",
+   "id": "Ar25pk",
    "plan_id": 94415,
    "campo_ofertas": "novidades da intensivet (opcional)"
   }
