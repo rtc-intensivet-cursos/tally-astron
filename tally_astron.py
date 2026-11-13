@@ -148,10 +148,18 @@ def main():
     chave_tally = env("TALLY_API_KEY")
     cab = "Basic " + base64.b64encode(
         f"{env('ASTRON_AM_KEY')}:{env('ASTRON_AM_SECRET')}".encode()).decode()
-    club, plano = config["club_id"], config["plan_id"]
+    club, plano_padrao = config["club_id"], config.get("plan_id")
+    hoje = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     novos = erros = 0
     for form in config["formularios"]:
+        # cada formulário pode ter o seu plano e a sua data final ("ate", AAAA-MM-DD)
+        plano = form.get("plan_id", plano_padrao)
+        if not plano:
+            print(f"[aguardando] {form['nome']}: ainda sem plano na Astron, pulei")
+            continue
+        if form.get("ate") and hoje > form["ate"]:
+            continue
         for s in inscricoes(form["id"], chave_tally):
             if s["id"] in feitos:
                 continue

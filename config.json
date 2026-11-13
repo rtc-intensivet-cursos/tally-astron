@@ -1,12 +1,42 @@
 {
- "descricao": "MOVE 2026 - Sala de Comando: convidados dos formulários do Tally ganham o plano do MOVE na Astron",
+ "descricao": "Formulários do Tally que dão um plano na Astron: MOVE 2026 (convidados dos patrocinadores) e Aula Aberta Intensiflix",
  "club_id": 9656,
  "plan_id": 94107,
  "formularios": [
-  {"nome": "Vetnil", "id": "jebJVY"},
-  {"nome": "Royal Canin", "id": "Eq5ZO2"},
-  {"nome": "Vetex", "id": "rDBJZX"},
-  {"nome": "INpulse", "id": "4aB9b5"},
-  {"nome": "Dr. Rodrigo Rabelo", "id": "rDBJN2"}
+  {
+   "nome": "Vetnil",
+   "id": "jebJVY",
+   "plan_id": 94107,
+   "ate": "2026-11-28"
+  },
+  {
+   "nome": "Royal Canin",
+   "id": "Eq5ZO2",
+   "plan_id": 94107,
+   "ate": "2026-11-28"
+  },
+  {
+   "nome": "Vetex",
+   "id": "rDBJZX",
+   "plan_id": 94107,
+   "ate": "2026-11-28"
+  },
+  {
+   "nome": "INpulse",
+   "id": "4aB9b5",
+   "plan_id": 94107,
+   "ate": "2026-11-28"
+  },
+  {
+   "nome": "Dr. Rodrigo Rabelo",
+   "id": "rDBJN2",
+   "plan_id": 94107,
+   "ate": "2026-11-28"
+  },
+  {
+   "nome": "Aula Aberta Intensiflix",
+   "id": "Z9Egg0",
+   "plan_id": null
+  }
  ]
 }
