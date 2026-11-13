@@ -36,7 +36,8 @@
   {
    "nome": "Aula Aberta Intensiflix",
    "id": "Z9Egg0",
-   "plan_id": 94415
+   "plan_id": 94415,
+   "campo_ofertas": "novidades da intensivet (opcional)"
   }
  ]
 }

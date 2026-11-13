@@ -192,6 +192,10 @@ def main():
                     print(f"[já tinha] {form['nome']}: inscrição {s['id']} já tinha o plano")
                 feitos[s["id"]] = {"form": form["nome"], "status": "ok",
                                    "em": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")}
+                if form.get("campo_ofertas"):
+                    # aceitou receber ofertas? (caixa opcional, parecer da Joana 13/11/2026);
+                    # guarda só sim/não pelo id da inscrição, sem e-mail (repositório público)
+                    feitos[s["id"]]["ofertas"] = bool(d.get(form["campo_ofertas"]))
                 novos += 1
                 print(f"[ok] {form['nome']}: inscrição {s['id']} liberada")
             except Exception as e:
