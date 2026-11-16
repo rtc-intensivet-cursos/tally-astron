@@ -166,6 +166,10 @@ def main():
             d = s["dados"]
             email = campo(d, "e-mail", "email").lower()
             nome = campo(d, "nome completo", "nome")[:40]
+            # a Astron conta BYTES (letra acentuada = 2): corta até caber em 40 (16/11/2026)
+            while len(nome.encode("utf-8")) > 40:
+                nome = nome[:-1]
+            nome = nome.strip()
             fone = re.sub(r"\D", "", campo(d, "whatsapp", "telefone"))
             if so_email and email != so_email:
                 continue
