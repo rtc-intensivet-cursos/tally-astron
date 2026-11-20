@@ -762,5 +762,28 @@
   "status": "ok",
   "em": "2026-11-19 14:57",
   "ofertas": false
+ },
+ "OQ26OQM": {
+  "form": "INpulse",
+  "status": "ok",
+  "em": "2026-11-20 00:28"
+ },
+ "OQ26Ra8": {
+  "form": "Aula Aberta Intensiflix (convite por e-mail)",
+  "status": "ok",
+  "em": "2026-11-20 00:28",
+  "ofertas": true
+ },
+ "GeGZZ1L": {
+  "form": "Aula Aberta Intensiflix (convite por e-mail)",
+  "status": "ok",
+  "em": "2026-11-20 00:28",
+  "ofertas": true
+ },
+ "PRx7xQB": {
+  "form": "Aula Aberta Intensiflix (convite por e-mail)",
+  "status": "ok",
+  "em": "2026-11-20 00:28",
+  "ofertas": true
  }
 }
