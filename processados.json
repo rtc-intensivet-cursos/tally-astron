@@ -942,5 +942,23 @@
   "form": "Vetnil Link 04",
   "status": "ok",
   "em": "2026-11-23 21:04"
+ },
+ "Kp98AqD": {
+  "form": "Aula Aberta Intensiflix (vitrine)",
+  "status": "ok",
+  "em": "2026-11-23 23:35",
+  "ofertas": false
+ },
+ "Eq28YgB": {
+  "form": "Aula Aberta Intensiflix (vitrine)",
+  "status": "ok",
+  "em": "2026-11-23 23:35",
+  "ofertas": true
+ },
+ "yXBebpx": {
+  "form": "Aula Aberta Intensiflix (convite por e-mail)",
+  "status": "ok",
+  "em": "2026-11-23 23:35",
+  "ofertas": true
  }
 }
