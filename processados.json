@@ -801,5 +801,11 @@
   "form": "Vetex",
   "status": "ok",
   "em": "2026-11-23 00:28"
+ },
+ "ArExNND": {
+  "form": "Aula Aberta Intensiflix (vitrine)",
+  "status": "ok",
+  "em": "2026-11-23 09:58",
+  "ofertas": true
  }
 }
