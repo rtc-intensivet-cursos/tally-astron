@@ -1,5 +1,5 @@
 {
- "descricao": "Formulários do Tally que dão um plano na Astron: MOVE 2026 (convidados dos patrocinadores) e Aula Aberta Intensiflix",
+ "descricao": "Formulários do Tally que dão um plano na Astron: MOVE 2026, Aula Aberta Intensiflix (club 9656) e Clase abierta LATAM (club 9657)",
  "club_id": 9656,
  "plan_id": 94107,
  "formularios": [
@@ -110,6 +110,13 @@
    "id": "zEyvYq",
    "plan_id": 94415,
    "campo_ofertas": "novidades da intensivet (opcional)"
+  },
+  {
+   "nome": "Clase abierta LATAM - Triage (intensivet.net)",
+   "id": "8NZB8x",
+   "club_id": 9657,
+   "plan_id": 94722,
+   "campo_ofertas": "novedades de intensivet (opcional)"
   }
  ]
 }

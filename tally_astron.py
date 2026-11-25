@@ -148,13 +148,15 @@ def main():
     chave_tally = env("TALLY_API_KEY")
     cab = "Basic " + base64.b64encode(
         f"{env('ASTRON_AM_KEY')}:{env('ASTRON_AM_SECRET')}".encode()).decode()
-    club, plano_padrao = config["club_id"], config.get("plan_id")
+    club_padrao, plano_padrao = config["club_id"], config.get("plan_id")
     hoje = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     novos = erros = 0
     for form in config["formularios"]:
         # cada formulário pode ter o seu plano e a sua data final ("ate", AAAA-MM-DD)
         plano = form.get("plan_id", plano_padrao)
+        # cada formulário pode ter o seu club (ex.: Intensivet LATAM 9657, 25/11/2026)
+        club = form.get("club_id", club_padrao)
         if not plano:
             print(f"[aguardando] {form['nome']}: ainda sem plano na Astron, pulei")
             continue
@@ -164,8 +166,8 @@ def main():
             if s["id"] in feitos:
                 continue
             d = s["dados"]
-            email = campo(d, "e-mail", "email").lower()
-            nome = campo(d, "nome completo", "nome")[:40]
+            email = campo(d, "e-mail", "email", "correo electrónico", "correo").lower()
+            nome = campo(d, "nome completo", "nome", "nombre completo", "nombre")[:40]
             # a Astron conta BYTES (letra acentuada = 2): corta até caber em 40 (16/11/2026)
             while len(nome.encode("utf-8")) > 40:
                 nome = nome[:-1]
