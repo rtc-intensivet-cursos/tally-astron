@@ -1007,5 +1007,11 @@
   "form": "Vetnil Link 04",
   "status": "ok",
   "em": "2026-11-24 21:21"
+ },
+ "0VKl060": {
+  "form": "Aula Aberta Intensiflix (convite por e-mail)",
+  "status": "ok",
+  "em": "2026-11-25 00:03",
+  "ofertas": true
  }
 }
